@@ -1405,3 +1405,325 @@ header {
     color: #fff !important;
     margin: 0 !important;
 }
+
+/* ═══════ Print Report Styles ═══════ */
+.print-report-header {
+    display: none;
+}
+
+@media print {
+    /* ═══════ PRODUCTION-GRADE PRINT ENGINE ═══════ */
+    @page {
+        size: A4 portrait;
+        margin: 20mm 15mm; /* Professional document margins */
+    }
+
+    body {
+        background: #fff !important;
+        color: #111 !important;
+        font-family: 'Inter', 'Segoe UI', serif !important;
+        line-height: normal !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* UNIVERSAL VISIBILITY FIX: Force all text to dark on white PDF background */
+    body, p, span, div, td, th, h1, h2, h3, h4, i, b, strong, li, .accent-text, .brand span {
+        color: #111 !important;
+        -webkit-text-fill-color: #111 !important;
+        text-shadow: none !important;
+        background: transparent !important;
+        background-clip: initial !important;
+        -webkit-background-clip: initial !important;
+    }
+
+    /* GLOBAL PRINT CONTAINER */
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+    }
+
+    /* HIDE NON-DOCUMENT ELEMENTS */
+    header, footer, nav, .nav-island, .bg-canvas, .bg-dot-grid, 
+    .scanline-overlay, .hero-actions, .mode-selector, 
+    .execute-btn, .export-group, .close-btn, #pricing,
+    #typeFilters, .ai-footer, .scanning-bar, .action-btn, 
+    .cyber-btn, .nav-island-wrapper, .modal-close {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        overflow: hidden !important;
+    }
+
+    /* FORMAL REPORT HEADER */
+    .print-report-header {
+        display: block !important;
+        border-bottom: 3pt solid #1e293b;
+        padding-bottom: 20pt;
+        margin-bottom: 30pt;
+        page-break-after: avoid;
+    }
+
+    .print-brand {
+        display: flex;
+        align-items: center;
+        gap: 12pt;
+        margin-bottom: 8pt;
+    }
+
+    .print-brand i { color: #1e3a8a !important; font-size: 24pt !important; }
+    .print-brand span { 
+        font-family: 'Syncopate', sans-serif; 
+        font-weight: 800; 
+        font-size: 16pt; 
+        color: #111 !important; 
+        letter-spacing: 1px;
+    }
+
+    .print-meta {
+        display: flex;
+        justify-content: space-between;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9pt;
+        color: #475569;
+        font-weight: 600;
+    }
+
+    .print-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 20pt;
+        font-weight: 900;
+        color: #0f172a !important;
+        margin-top: 15pt;
+        text-transform: uppercase;
+        letter-spacing: -0.5pt;
+    }
+
+    /* DOCUMENT HIERARCHY */
+    .section-head {
+        margin-top: 25pt !important;
+        margin-bottom: 15pt !important;
+        border-bottom: 1pt solid #e2e8f0 !important;
+        padding-bottom: 5pt !important;
+        page-break-after: avoid !important;
+    }
+
+    .section-head h2 {
+        font-size: 11pt !important;
+        font-weight: 800 !important;
+        color: #1e293b !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1pt !important;
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+    .section-head .line { display: none !important; }
+
+    /* COMPONENT STYLING */
+    .panel, .cyber-card, .metric-box, .heatmap-cell, .cluster-card, .ai-panel {
+        background: #fff !important;
+        border: 1pt solid #e2e8f0 !important;
+        border-radius: 2pt !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        transform: none !important;
+        margin-bottom: 20pt !important;
+        padding: 15pt !important;
+        height: auto !important;
+        min-height: 0 !important;
+        display: block !important;
+        page-break-inside: avoid !important;
+    }
+
+    /* CARDS & METRICS BALANCING */
+    .metrics-grid {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 15pt !important;
+        margin-bottom: 25pt !important;
+    }
+
+    .metric-box {
+        text-align: center !important;
+        padding: 12pt !important;
+        margin-bottom: 0 !important;
+    }
+
+    .metric-box .value { 
+        font-size: 18pt !important; 
+        font-weight: 900 !important; 
+        color: #1e3a8a !important; 
+        margin-bottom: 4pt;
+    }
+    
+    .metric-box .label { 
+        font-size: 7.5pt !important; 
+        color: #64748b !important; 
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .heatmap-box {
+        grid-column: span 4 !important;
+    }
+
+    .heatmap-grid {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 10pt !important;
+    }
+
+    .heatmap-cell {
+        margin-bottom: 0 !important;
+        border: 1pt solid #f1f5f9 !important;
+        padding: 12pt !important;
+    }
+
+    .heatmap-cell.critical { border-left: 4pt solid #ef4444 !important; }
+    .heatmap-cell.high { border-left: 4pt solid #f97316 !important; }
+    .heatmap-cell.medium { border-left: 4pt solid #eab308 !important; }
+    .heatmap-cell.low { border-left: 4pt solid #3b82f6 !important; }
+
+    /* CARD HEADERS */
+    .card-header {
+        background: #f8fafc !important;
+        border-bottom: 1pt solid #e2e8f0 !important;
+        padding: 10pt 15pt !important;
+        margin: -15pt -15pt 15pt -15pt !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .card-header h3 {
+        font-size: 9pt !important;
+        font-weight: 800 !important;
+        color: #475569 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.5pt;
+    }
+
+    /* TABLE OPTIMIZATION (THE CORE FIX) */
+    .discovery-section { 
+        page-break-before: auto !important;
+        break-before: auto !important; 
+    }
+
+    .log-table-wrapper {
+        overflow: visible !important;
+        width: 100% !important;
+    }
+
+    .log-table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        table-layout: auto !important;
+    }
+
+    .log-table thead {
+        display: table-header-group !important;
+    }
+
+    .log-table th {
+        background: #f1f5f9 !important;
+        color: #334155 !important;
+        padding: 10pt 12pt !important;
+        font-size: 8.5pt !important;
+        font-weight: 800 !important;
+        text-align: left !important;
+        border-bottom: 2pt solid #cbd5e1 !important;
+        text-transform: uppercase;
+    }
+
+    .log-table tr {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    .log-table td {
+        padding: 10pt 12pt !important;
+        font-size: 9pt !important;
+        color: #334155 !important;
+        border-bottom: 1pt solid #f1f5f9 !important;
+        vertical-align: middle !important;
+        line-height: normal !important;
+    }
+
+    .log-table tr:nth-child(even) {
+        background: #fcfdfe !important;
+    }
+
+    /* BADGES & PILLS */
+    .method-label, .threat-pill, .tech-pill, .cap-status {
+        font-size: 7.5pt !important;
+        padding: 2pt 6pt !important;
+        border: 1pt solid #e2e8f0 !important;
+        color: #475569 !important;
+        background: #fff !important;
+        font-weight: 600 !important;
+    }
+
+    /* RECON LAYOUT GAPS FIX */
+    .recon-layout { 
+        display: block !important; 
+        width: 100% !important;
+    }
+    
+    .recon-layout > div {
+        border-left: none !important;
+        padding-left: 0 !important;
+        margin-bottom: 25pt !important;
+        width: 100% !important;
+    }
+
+    .profile-grid, .offensive-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 20pt !important;
+    }
+
+    /* TYPOGRAPHY CLEANUP */
+    .hero {
+        margin-bottom: 20pt !important;
+        padding-top: 0 !important;
+        padding-bottom: 5pt !important;
+        border-bottom: 1pt solid #f1f5f9 !important;
+    }
+
+    .hero::before { display: none !important; }
+
+    .hero h1 { font-size: 24pt !important; font-weight: 950 !important; margin-bottom: 8pt !important; }
+    .hero h1 span.accent-text { color: #1e3a8a !important; display: inline !important; }
+    .hero p { font-size: 10pt !important; color: #64748b !important; line-height: 1.4 !important; }
+
+    /* PREVENT AWKWARD PAGE BREAKS */
+    .cluster-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 15pt !important;
+    }
+
+    .cluster-card {
+        padding: 15pt !important;
+    }
+
+    .cluster-card h3 { font-size: 12pt !important; margin-bottom: 6pt !important; }
+    .cluster-card p { font-size: 9pt !important; color: #475569 !important; }
+
+    /* Score Gauge Print Fix */
+    text.gauge-text, #scoreText, .gauge-text {
+        fill: #111 !important;
+        font-weight: 800 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+
+    /* FOOTER CLEANUP (Hiding browser URL) */
+    /* Note: Hiding browser footer entirely is done via browser print settings (Margins: None) */
+}

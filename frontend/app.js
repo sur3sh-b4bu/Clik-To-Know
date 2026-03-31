@@ -81,6 +81,12 @@ document.querySelectorAll(".cluster-action").forEach(btn => {
 // Export buttons
 document.getElementById("exportJsonBtn").addEventListener("click", exportJson);
 document.getElementById("exportCsvBtn").addEventListener("click", exportCsv);
+document.getElementById("exportPdfBtn").addEventListener("click", () => {
+    const target = document.getElementById("targetUrl").value || "UNKNOWN TARGET";
+    document.getElementById("printTarget").textContent = `TARGET: ${target.toUpperCase()}`;
+    document.getElementById("printDate").textContent = `REPORT GENERATED: ${new Date().toLocaleString()}`;
+    window.print();
+});
 
 // ═══════ URL Normalizer ═══════
 function normalizeUrl(value) {

@@ -15,6 +15,19 @@
     <div class="bg-canvas"></div>
     <div class="bg-dot-grid"></div>
     <div class="scanline-overlay"></div>
+    
+    <!-- PRINT ONLY REPORT HEADER -->
+    <div class="print-report-header">
+        <div class="print-brand">
+            <i class="fas fa-shield-halved"></i>
+            <span>CLICK TO KNOW PRO</span>
+        </div>
+        <div class="print-meta">
+            <div id="printDate">REPORT GENERATED: ${new Date().toLocaleString()}</div>
+            <div id="printTarget">TARGET: UNKNOWN</div>
+        </div>
+        <div class="print-title">VULNERABILITY RESEARCH & RECONNAISSANCE REPORT</div>
+    </div>
 
     <header>
         <div class="nav-island">
@@ -283,6 +296,7 @@
                     <div class="export-group">
                         <button id="exportJsonBtn" class="export-btn"><i class="fas fa-file-code"></i> JSON</button>
                         <button id="exportCsvBtn" class="export-btn"><i class="fas fa-file-csv"></i> CSV</button>
+                        <button id="exportPdfBtn" class="export-btn"><i class="fas fa-file-pdf"></i> PRINT REPORT</button>
                     </div>
                 </div>
             </div>
